@@ -1,0 +1,171 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users{
+  UserId Int @id @default(autoincrement())
+  UserName String @db.VarChar(48) @unique
+  Email String @unique
+  Password String
+  OnCreate DateTime @default(now())
+
+  P2PPayments p2p_payments[]
+  Wallets wallets[]
+  P2PBuys p2p_buys[]
+  P2PSells p2p_sells[]
+  P2PBuyLogs p2p_buy_logs[]
+  P2PSellLogs p2p_sell_logs[]
+}
+
+model cryptos{
+  CryptoId Int @id @default(autoincrement())
+  FullName String @db.VarChar(32) @unique
+  ShortName String @db.VarChar(8) @unique
+  CurrentPrice Float @db.Float
+  OnCreate DateTime @default(now())
+
+  Wallets wallets[]
+  P2PBuys p2p_buys[]
+  P2PSells p2p_sells[]
+}
+
+model payment_types{
+  PaymentTypeId Int @id @default(autoincrement())
+  Name String @db.VarChar(32)
+  OnCreate DateTime @default(now())
+
+  P2PPayments p2p_payments[]
+}
+
+model p2p_payments{
+  P2PPaymentId Int @id @default(autoincrement())
+  PaymentFirstName String @db.VarChar(32)
+  PaymentLastName String @db.VarChar(32)
+  PaymentInfo String @db.VarChar(64)
+
+  User users @relation(fields: [UserId], references: [UserId], onDelete: Cascade)
+  UserId Int
+
+  PaymentType payment_types @relation(fields: [PaymentTypeId], references: [PaymentTypeId], onDelete: Cascade)
+  PaymentTypeId Int
+  OnCreate DateTime @default(now())
+}
+
+model wallets{
+  WalletId Int @id @default(autoincrement())
+
+  User users @relation(fields: [UserId], references: [UserId], onDelete: Cascade)
+  UserId Int
+
+  Crypto cryptos @relation(fields: [CryptoId], references: [CryptoId], onDelete: Cascade)
+  CryptoId Int
+
+  QTY Float @db.Float
+  WalletAddress String @unique @default(uuid())
+  OnCreate DateTime @default(now())
+
+  WalletLogs wallet_logs[]
+}
+
+model protocols{
+  ProtocolId Int @id @default(autoincrement())
+  FullName String @db.VarChar(32)
+  ShortName String @db.VarChar(8)
+  OnCreate DateTime @default(now())
+
+  WalletLogs wallet_logs[]
+}
+
+model wallet_logs{
+  WalletLogId Int @id @default(autoincrement())
+
+  Wallet wallets @relation(fields: [WalletId], references: [WalletId], onDelete: Cascade)
+  WalletId Int
+
+  ChangeQTY Float @db.Float
+  RemainQTY Float @db.Float
+
+  ToFromWalletAddress String
+
+  Protocol protocols @relation(fields: [ProtocolId], references: [ProtocolId])
+  ProtocolId Int
+
+  OnCreate DateTime @default(now())
+}
+
+model p2p_buys{
+  P2PBuyId Int @id @default(autoincrement())
+
+  User users @relation(fields: [UserId], references: [UserId], onDelete: Cascade)
+  UserId Int
+
+  Crypto cryptos @relation(fields: [CryptoId], references: [CryptoId], onDelete: Cascade)
+  CryptoId Int
+
+  PriceRate Float @db.Float
+  MinQTY Float @db.Float
+  MaxQTY Float @db.Float
+  OnCreate DateTime @default(now())
+
+  P2PBuyLogs p2p_buy_logs[]
+}
+
+model p2p_sells{
+  P2PSellId Int @id @default(autoincrement())
+
+  User users @relation(fields: [UserId], references: [UserId], onDelete: Cascade)
+  UserId Int
+
+  Crypto cryptos @relation(fields: [CryptoId], references: [CryptoId], onDelete: Cascade)
+  CryptoId Int
+
+  PriceRate Float @db.Float
+  MinQTY Float @db.Float
+  MaxQTY Float @db.Float
+  OnCreate DateTime @default(now())
+  
+  P2PSellLogs p2p_sell_logs[]
+}
+
+model p2p_buy_logs{
+  P2PBuyLogId Int @id @default(autoincrement())
+  
+  P2PBuy p2p_buys @relation(fields: [P2PBuyId], references: [P2PBuyId], onDelete: Cascade)
+  P2PBuyId Int
+  
+  Customer users @relation(fields: [CustomerId], references: [UserId])
+  CustomerId Int
+
+  QTY Float @db.Float
+  SumPriec Float @db.Float
+  Status Int @default(0)
+  FeedbackScore Int?
+  OnFinish DateTime?
+  OnCreate DateTime @default(now())
+}
+
+model p2p_sell_logs{
+  P2PSellLogId Int @id @default(autoincrement())
+  
+  P2PSell p2p_sells @relation(fields: [P2PSellId], references: [P2PSellId], onDelete: Cascade)
+  P2PSellId Int
+  
+  Customer users @relation(fields: [CustomerId], references: [UserId])
+  CustomerId Int
+
+  QTY Float @db.Float
+  SumPriec Float @db.Float
+  Status Int @default(0)
+  FeedbackScore Int?
+  OnFinish DateTime?
+  OnCreate DateTime @default(now())
+}
