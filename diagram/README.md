@@ -15,6 +15,8 @@ User info.
 
 ## cryptos
 Crypto info, store only currently price because of challenge testing question not include feature like bars chart or candles chart for monitor overall price just P2P trade.
+  
+If want to use Fiat(THB, USD) just add them as crypto coin.
 
 | Column | Data Type | Nullable | Description |
 | :---: | :---: | :---:	| :---	|
