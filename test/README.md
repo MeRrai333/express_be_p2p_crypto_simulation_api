@@ -1,4 +1,5 @@
 # Path detail
+import `CryptoBackend.postman_collection.json` file to Postman for testing
 
 ## User
 ### Get
@@ -1280,7 +1281,7 @@
 	}
 	```
 ### Delete
- `/api/p2p/sell/id/:id`
+- `/api/p2p/sell/id/:id`
 	* Delete by Id
 	* return
 	```json
