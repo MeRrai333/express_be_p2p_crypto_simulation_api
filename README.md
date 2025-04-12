@@ -129,6 +129,11 @@ npx prisma db seed
 npm run dev
 ```
 
+# Testing
+- Postman
+	* Import file `/test/CryptoBackend.postman_collection.json` to Postman
+![More detail](./test/README.md)
+
 # ER diagram
 ![er_diagram](https://github.com/MeRrai333/express_be_p2p_crypto_simulation_api/blob/main/diagram/ER_diagram.svg?raw=true)
 ![More detail](./diagram/README.md)
