@@ -119,6 +119,7 @@ P2PSTATEMENTTIMEOUT=60
 npx prisma migrate dev --name 'init'
 ```
 for create database and table from schema file in /prisma/schema.prisma
+  
 5. if seeding from 4. not auto running then run this in  terminal at root of project
 ```
 npx prisma db seed
