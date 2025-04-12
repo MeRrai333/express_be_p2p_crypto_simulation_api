@@ -126,7 +126,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/user/id//p2pBuyLogs",
+							"raw": "http://localhost:3000/api/user/id/1/p2pBuyLogs",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -136,7 +136,7 @@
 								"api",
 								"user",
 								"id",
-								"",
+								"1",
 								"p2pBuyLogs"
 							]
 						}
@@ -218,7 +218,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"User6\",\n    \"email\": \"user6@mail.com\",\n    \"repassword\": \"password\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"username\": \"User7\",\n    \"email\": \"user7@mail.com\",\n    \"repassword\": \"password\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -247,7 +247,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user6_edit@mail.com\",\n    \"password\": \"password6\"\n}",
+							"raw": "{\n    \"email\": \"user6@mail.com\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,7 +285,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/id/7",
+							"raw": "http://localhost:3000/api/user/id/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -295,7 +295,7 @@
 								"api",
 								"user",
 								"id",
-								"7"
+								"8"
 							]
 						}
 					},
@@ -307,7 +307,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/user/id/7",
+							"raw": "http://localhost:3000/api/user/id/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -317,7 +317,7 @@
 								"api",
 								"user",
 								"id",
-								"7"
+								"8"
 							]
 						}
 					},
@@ -330,7 +330,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user3@mail.com\"\n}",
+							"raw": "{\n    \"email\": \"user4@mail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

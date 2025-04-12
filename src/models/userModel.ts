@@ -14,13 +14,14 @@ export const createUser = async (
   data: Omit<users, 'UserId'|'OnCreate'>,
   passDb: Omit<PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use" | "$extends"> = db,
 ) => {
-  return await passDb.users.create({
+  const {Password, ...user} = await passDb.users.create({
     data: {
       UserName: data.UserName,
       Password: bcrypt.hashSync(data.Password, SALT),
       Email: data.Email
     }
   })
+  return user;
 }
 
 export const getSignIn = async (
@@ -212,7 +213,7 @@ export const updateUser = async (
   data: Omit<users, 'UserId'|'OnCreate'>,
   passDb: Omit<PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use" | "$extends"> = db,
 ) => {
-  return await passDb.users.update({
+  const {Password, ...user} = await passDb.users.update({
     where: {
       UserId: id
     },
@@ -222,6 +223,7 @@ export const updateUser = async (
       Password: data.Password ? bcrypt.hashSync(data.Password, SALT) : undefined
     }
   })
+  return user
 }
 
 export const deleteUserById = async (
@@ -245,9 +247,10 @@ export const deleteUserByEmail = async (
   email: string,
   passDb: Omit<PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use" | "$extends"> = db,
 ) => {
-  return await passDb.users.delete({
+  const {Password, ...user} = await passDb.users.delete({
     where: {
       Email: email
     }
   })
+  return user
 }
