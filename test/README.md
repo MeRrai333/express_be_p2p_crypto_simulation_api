@@ -1064,7 +1064,7 @@ import `CryptoBackend.postman_collection.json` file to Postman for testing
 	}
 	```
 ### Delete
- `/api/p2p/buy/id/:id`
+- `/api/p2p/buy/id/:id`
 	* Delete by Id
 	* return
 	```json
