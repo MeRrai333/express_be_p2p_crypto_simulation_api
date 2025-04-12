@@ -10,7 +10,7 @@ export const getP2PBuyLogByP2PBuyId = async (req: Request, res: Response, next: 
     const data = await model.getP2PBuyLogByP2PBuyId(buyId);
     if(!data)
       throw new AppError('Not found', 400)
-    res.json({...data});
+    res.json([...data]);
   } catch (e) {
     next(prismaError(e))
   }

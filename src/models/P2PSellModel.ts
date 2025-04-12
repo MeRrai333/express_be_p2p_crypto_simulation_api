@@ -22,10 +22,18 @@ export const getP2PSellById = async (
   return await db.p2p_sells.findUnique({
     where: {
       P2PSellId: id
-    },
+    }, 
     include: {
+      User: {
+        select: {
+          UserName: true,
+          OnCreate: true,
+          P2PPayments: true
+        }
+      },
       Crypto: true
     }
+
   })
 }
 
@@ -36,6 +44,15 @@ export const getP2PSellByShortNameCoin = async (
     where: {
       Crypto: {
         ShortName: shortName
+      }
+    },
+    include: {
+      User: {
+        select: {
+          UserName: true,
+          OnCreate: true,
+          P2PPayments: true
+        }
       }
     }
   })
@@ -49,6 +66,11 @@ export  const getP2PSellByUserId = async (
       UserId: userId
     },
     include: {
+      User: {
+        select: {
+          P2PPayments: true
+        }
+      },
       Crypto: true
     }
   })

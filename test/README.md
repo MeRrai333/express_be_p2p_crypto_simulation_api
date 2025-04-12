@@ -751,3 +751,550 @@
 		}
 	}
 	```
+## P2P Payment
+### Get
+- No get all
+- `/api/p2p/payment/user/id/:id`
+	* Get by User Id
+	* return
+	```json
+	{
+		"P2PPaymentId": "number",
+		"PaymentFirstName": "string",
+		"PaymentLastName": "string",
+		"PaymentInfo": "string",
+		"UserId": "number",
+		"PaymentTypeId": "number",
+		"OnCreate": "datetime",
+		"PaymentType": {
+			"PaymentTypeId": "number",
+			"Name": "string",
+			"OnCreate": "datetime",
+		}
+	}[]
+	```
+- `/api/p2p/payment/id/:id`
+	* Get by Id
+	* return
+	```json
+	{
+		"P2PPaymentId": "number",
+		"PaymentFirstName": "string",
+		"PaymentLastName": "string",
+		"PaymentInfo": "string",
+		"UserId": "number",
+		"PaymentTypeId": "number",
+		"OnCreate": "datetime",
+		"PaymentType": {
+			"PaymentTypeId": "number",
+			"Name": "string",
+			"OnCreate": "datetime",
+		}
+	}
+	```
+### Post
+- `/api/p2p/payment`
+	* Add P2P Payment
+	* body
+	```json
+	{
+		"userId": "number",
+		"paymentTypeId": "number",
+		"paymentFirstName": "string",
+		"paymentLastName": "string",
+		"paymentInfo": "string"
+	}
+	```
+	* return
+	```json
+	{
+		"P2PPaymentId": "number",
+		"PaymentFirstName": "string",
+		"PaymentLastName": "string",
+		"PaymentInfo": "string",
+		"UserId": "number",
+		"PaymentTypeId": "number",
+		"OnCreate": "datetime"
+	}
+	```
+### Put
+- `/api/p2p/payment/id/:id`
+	* Update by Id
+	* body
+	```json
+	{
+		"paymentTypeId": "number",
+		"paymentFirstName": "string",
+		"paymentLastName": "string",
+		"paymentInfo": "string"
+	}
+	```
+	* body detail
+		* paymentTypeId: optional
+		* paymentFirstName: optional
+		* paymentLastName: optional
+		* paymentInfo: optional
+	* return
+	```json
+	{
+		"P2PPaymentId": "number",
+		"PaymentFirstName": "string",
+		"PaymentLastName": "string",
+		"PaymentInfo": "string",
+		"UserId": "number",
+		"PaymentTypeId": "number",
+		"OnCreate": "datetime"
+	}
+	```
+### Delete
+- `/api/p2p/payment/id/:id`
+	* Delete by Id
+	* return
+	```json
+	{
+		"message": "deleted paymentId :id",
+		"paymentType": {
+			"P2PPaymentId": "number",
+			"PaymentFirstName": "string",
+			"PaymentLastName": "string",
+			"PaymentInfo": "string",
+			"UserId": "number",
+			"PaymentTypeId": "number",
+			"OnCreate": "datetime"
+		}
+	}
+	```
+## P2P Buy
+### Get
+- No get all, normally should search by coin
+- `/api/p2p/buy/coin/:coin`
+	* Get by coin short name
+	* return
+	```json
+	{
+		"P2PBuyId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}[]
+	```
+- `/api/p2p/buy/id/:id`
+	* Get by Id
+	* return
+	```json
+	{
+		"P2PBuyId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}
+	```
+- `/api/p2p/buy/user/id/:id`
+	* Get by User Id
+	* return
+	```json
+	{
+		"P2PBuyId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}[]
+	```
+- `/api/p2p/buy/id/:id/logs`
+	* Get logs by Id
+	* return
+	```json
+	{
+		"P2PBuyLogId": "number",
+		"P2PBuyId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}[]
+	```
+### Post
+- `/api/p2p/buy`
+	* Add P2P buy store
+	* body
+	```json
+	{
+		"userId": "number",
+		"cryptoId": "number",
+		"priceRate": "number",
+		"minQty": "number",
+		"maxQty": "number"
+	}
+	```
+	* return
+	```json
+	{
+		"P2PBuyId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/p2p/buy/order`
+	- open order
+	- body
+	```json
+	{
+		"customerId": "number",
+		"P2PBuyId": "number",
+		"qty": "number"
+	}
+	```
+	- return
+	```json
+	{
+		"P2PBuyLogId": "number",
+		"P2PBuyId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}
+	```
+### Put
+- `/api/p2p/buy/id/:id`
+	* Update P2P buy store by Id (can't change crypto)
+	* body
+	```json
+	{
+		"priceRate": "number",
+		"minQty": "number",
+		"maxQty": "number"
+	}
+	```
+	* body detail
+		* priceRate: optional
+		* minQty: optional
+		* maxQty: optional
+	* return
+	```json
+	{
+		"P2PBuyId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/p2p/buy/order/id/:id`
+	- Update to success order by Id
+	- body
+	```json
+	{
+		"feedbackScore": "number"
+	}
+	```
+	- return
+	```json
+	{
+		"P2PBuyLogId": "number",
+		"P2PBuyId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}
+	```
+### Delete
+ `/api/p2p/buy/id/:id`
+	* Delete by Id
+	* return
+	```json
+	{
+		"message": "deleted P2PBuyId :id",
+		"P2PBuy": {
+			"P2PBuyId": "number",
+			"UserId": "number",
+			"CryptoId": "number",
+			"PriceRate": "number",
+			"MinQTY": "number",
+			"MaxQTY": "number",
+			"OnCreate": "datetime"
+		}
+		
+	}
+	```
+## P2P Sell
+### Get
+- No get all, normally should search by coin
+- `/api/p2p/sell/coin/:coin`
+	* Get by coin short name
+	* return
+	```json
+	{
+		"P2PSellId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}[]
+	```
+- `/api/p2p/sell/id/:id`
+	* Get by Id
+	* return
+	```json
+	{
+		"P2PSellId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}
+	```
+- `/api/p2p/sell/user/id/:id`
+	* Get by User Id
+	* return
+	```json
+	{
+		"P2PSellId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime",
+		"User": {
+			"UserName": "string",
+			"OnCreate": "datetime",
+			"P2PPayments": {
+				"P2PPaymentId": "number",
+				"PaymentFirstName": "string",
+				"PaymentLastName": "string",
+				"PaymentInfo": "string",
+				"UserId": "number",
+				"PaymentTypeId": "number",
+				"OnCreate": "datetime",
+			}[]
+		}
+	}[]
+	```
+- `/api/p2p/sell/id/:id/logs`
+	* Get logs by Id
+	* return
+	```json
+	{
+		"P2PSellLogId": "number",
+		"P2PSellId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}[]
+	```
+### Post
+- `/api/p2p/sell`
+	* Add P2P sell store
+	* body
+	```json
+	{
+		"userId": "number",
+		"cryptoId": "number",
+		"priceRate": "number",
+		"minQty": "number",
+		"maxQty": "number"
+	}
+	```
+	* return
+	```json
+	{
+		"P2PSellId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/p2p/sell/order`
+	- open sell order
+	- body
+	```json
+	{
+		"customerId": "number",
+		"P2PSellId": "number",
+		"qty": "number"
+	}
+	```
+	- return
+	```json
+	{
+		"P2PSellLogId": "number",
+		"P2PSellId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}
+	```
+### Put
+- `/api/p2p/sell/id/:id`
+	* Update P2P sell store by Id (can't change crypto)
+	* body
+	```json
+	{
+		"priceRate": "number",
+		"minQty": "number",
+		"maxQty": "number"
+	}
+	```
+	* body detail
+		* priceRate: optional
+		* minQty: optional
+		* maxQty: optional
+	* return
+	```json
+	{
+		"P2PSellId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"PriceRate": "number",
+		"MinQTY": "number",
+		"MaxQTY": "number",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/p2p/sell/order/id/:id`
+	- Update to success order by Id
+	- body
+	```json
+	{
+		"feedbackScore": "number"
+	}
+	```
+	- return
+	```json
+	{
+		"P2PSellLogId": "number",
+		"P2PSellId": "number",
+		"CustomerId": "number",
+		"QTY": "number",
+		"SumPriec": "number",
+		"Status": "number",
+		"FeedbackScore": "number | null",
+		"OnFinish": "datetime | null",
+		"OnCreate": "number"
+	}
+	```
+### Delete
+ `/api/p2p/sell/id/:id`
+	* Delete by Id
+	* return
+	```json
+	{
+		"message": "deleted P2PSellId :id",
+		"P2PSell": {
+			"P2PSellId": "number",
+			"UserId": "number",
+			"CryptoId": "number",
+			"PriceRate": "number",
+			"MinQTY": "number",
+			"MaxQTY": "number",
+			"OnCreate": "datetime"
+		}
+		
+	}
+	```

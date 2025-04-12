@@ -91,7 +91,7 @@ export const deleteP2PSellById = async (req: Request, res: Response, next: NextF
     const id = parseInt(req.params.id);
     res.json({
       message: `deleted P2PSellId ${id}`,
-      paymentType: await model.deleteP2PSellById(id)
+      P2PSell: await model.deleteP2PSellById(id)
     });
   } catch (e) {
     next(prismaError(e))

@@ -10,7 +10,7 @@ export const getP2PSellLogByP2PSellId = async (req: Request, res: Response, next
     const data = await model.getP2PSellLogByP2PSellId(sellId);
     if(!data)
       throw new AppError('Not found', 400)
-    res.json({...data});
+    res.json([...data]);
   } catch (e) {
     next(prismaError(e))
   }
