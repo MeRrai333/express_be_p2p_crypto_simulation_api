@@ -238,6 +238,7 @@
 		"repassword": "string"
 	}
 	```
+	* body detail
 		* username: optional
 		* email: optional
 		* password: optional (require repassword)
