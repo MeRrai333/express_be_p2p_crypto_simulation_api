@@ -4,9 +4,9 @@
 ### Get
 - `/api/user`
 	* get all user
-	* return {
+	* return ```json{
 		UserId: number,
 		UserName: string,
 		Email: string,
 		OnCreate: datetime
-	}
+	}```
