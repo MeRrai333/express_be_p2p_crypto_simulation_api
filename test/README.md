@@ -366,6 +366,7 @@
 		"currentPrice": "number"
 	}
 	```
+	* body detail
 		* fullName: optional
 		* shortName: optional
 		* currentPrice: optional
@@ -523,17 +524,18 @@
 		"protocolId": "number"
 	}
 	```
+	* body detail
 		* srcWalletAddress: source wallet address
 		* protocolId: protocol use to transfer
 	* return
 	```json
 	{
-		"WalletId", "number",
-		"UserId", "number",
-		"CryptoId", "number",
-		"QTY", "number",
+		"WalletId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"QTY": "number",
 		"WalletAddress", "string",
-		"OnCreate", "datetime"
+		"OnCreate": "datetime"
 	}
 	```
 - `/api/wallet/transfer/srcAddr/:srcWalletAddr`
@@ -547,19 +549,205 @@
 		"protocolId": "number"
 	}
 	```
+	* body detail
 		* desWalletAddress: destination wallet address
 		* protocolId: protocol use to transfer
 	* return
 	```json
 	{
-		"WalletId", "number",
-		"UserId", "number",
-		"CryptoId", "number",
-		"QTY", "number",
-		"WalletAddress", "string",
-		"OnCreate", "datetime"
+		"WalletId": "number",
+		"UserId": "number",
+		"CryptoId": "number",
+		"QTY": "number",
+		"WalletAddress": "string",
+		"OnCreate": "datetime"
 	}
 	```
 ### Delete
 - No delete directly, normally delete wallet when crypto or user was delete by code
 ## Payment type
+### Get
+- `/api/paymentType`
+	* Get all
+	* return
+	```json
+	{
+		"PaymentTypeId": "number",
+		"Name": "string",
+		"OnCreate": "datetime"
+	}[]
+	```
+- `/api/paymentType/id/:id`
+	* Get by Id
+	* return
+	```json
+	{
+		"PaymentTypeId": "number",
+		"Name": "string",
+		"OnCreate": "datetime"
+	}
+	```
+### Post
+- `/api/paymentType`
+	* Add Payment Type
+	* body
+	```json
+	{
+		"name": "string"
+	}
+	```
+	* return
+	```json
+	{
+		"PaymentTypeId": "number",
+		"Name": "string",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/paymentType/many`
+	* Add Payment Types
+	* body
+	```json
+	{
+		"name": "string[]"
+	}
+	```
+	* return
+	```json
+	{
+		"PaymentTypeId": "number",
+		"Name": "string",
+		"OnCreate": "datetime"
+	}[]
+	```
+### Put
+- `/api/paymentType/id/:id`
+	* Update by Id
+	* body
+	```json
+	{
+		"name": "string"
+	}
+	```
+	* return
+	```json
+	{
+		"PaymentTypeId": "number",
+		"Name": "string",
+		"OnCreate": "datetime"
+	}
+	```
+### Delete
+- `/api/paymentType/id/:id`
+	* Delete by Id
+	* return
+	```json
+	{
+		"message": "deleted paymentId :id",
+		"paymentType": {
+			"PaymentTypeId": "number",
+			"Name": "string",
+			"OnCreate": "datetime"
+		}
+	}
+	```
+## Protocol
+### Get
+- `/api/protocol`
+	* Get all
+	* return
+	```json
+	{
+		"ProtocolId": "number",
+		"FullName": "string",
+		"ShortName": "string",
+		"OnCreate": "datetime"
+	}[]
+	```
+- `/api/protocol/id/:id`
+	* Get by Id
+	* return
+	```json
+	{
+		"ProtocolId": "number",
+		"FullName": "string",
+		"ShortName": "string",
+		"OnCreate": "datetime"
+	}
+	```
+### Post
+- `/api/protocol`
+	* Add Payment Type
+	* body
+	```json
+	{
+		"fullName": "string",
+		"shortName": "string"
+	}
+	```
+	* return
+	```json
+	{
+		"ProtocolId": "number",
+		"FullName": "string",
+		"ShortName": "string",
+		"OnCreate": "datetime"
+	}
+	```
+- `/api/protocol/many`
+	* Add Payment Types
+	* body
+	```json
+	{
+		"names": {
+			"fullName": "string",
+			"shortName": "string"
+		}[]
+	}
+	```
+	* return
+	```json
+	{
+		"ProtocolId": "number",
+		"FullName": "string",
+		"ShortName": "string",
+		"OnCreate": "datetime"
+	}[]
+	```
+### Put
+- `/api/protocol/id/:id`
+	* Update by Id
+	* body
+	```json
+	{
+		"fullName": "string",
+		"shortName": "string",
+	}
+	```
+	* body detail
+		* fullName: optional
+		* shortName: optional
+	* return
+	```json
+	{
+		"ProtocolId": "number",
+		"FullName": "string",
+		"ShortName": "string",
+		"OnCreate": "datetime"
+	}
+	```
+### Delete
+- `/api/protocol/id/:id`
+	* Delete by Id
+	* return
+	```json
+	{
+		"message": "deleted protocolId :id",
+		"paymentType": {
+			"ProtocolId": "number",
+			"FullName": "string",
+			"ShortName": "string",
+			"OnCreate": "datetime"
+		}
+	}
+	```
