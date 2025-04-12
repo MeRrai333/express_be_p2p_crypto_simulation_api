@@ -130,5 +130,5 @@ npm run dev
 ```
 
 # ER diagram
-![er_diagram](https://github.com/MeRrai333/express_be_p2p_crypto_simulation_api/blob/main/Diagram/ER_diagram.svg?raw=true)
+![er_diagram](https://github.com/MeRrai333/express_be_p2p_crypto_simulation_api/blob/main/diagram/ER_diagram.svg?raw=true)
 ![More detail](./Diagram/README.md)

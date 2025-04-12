@@ -1,5 +1,5 @@
 # ER diagram
-![er_diagram](https://github.com/MeRrai333/express_be_p2p_crypto_simulation_api/blob/main/Diagram/ER_diagram.svg?raw=true)
+![er_diagram](https://github.com/MeRrai333/express_be_p2p_crypto_simulation_api/blob/main/diagram/ER_diagram.svg?raw=true)
 
 # Data dictionary
 ## users
@@ -44,7 +44,7 @@ Protocols for transfer coin. such as BSC or TOR
 | ProtocolId | INT | No | PK, Auto increament |
 | FullName | Varchar(32) | No | Protocol name |
 | ShortName | Varchar(8) | No | Protocol short name |
-| OnCreate | Datetime | No | Date create |
+| OnCreate | Datetime | No | 	Date create |
 
 ## wallet_logs
 Logs for change qty of each wallet.
